@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" />
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <p>{{message|safe}}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>作業日</th>
+                <th>工番</th>
+                <th>メモ</th>
+                <th>開始時刻</th>
+                <th>終了時刻</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.workingDate}}</td>
+                <td>{{item.workNumber}}</td>
+                <td>{{item.memo}}</td>
+                <td>{{item.workStartTime}}</td>
+                <td>{{item.workEndTime}}</td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    <!-- <table>
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <tr><td></td><td>
+            <input type="submit" value="click">
+        </td></tr>
+    </form>
+    </table> -->
+</body>
+</html>
