@@ -8,10 +8,21 @@ from .forms import FindForm
 
 def index(request):
     
+    # data = WorkModel.objects.all()
+    # params = {
+    #     'title' : 'WorkRecord',
+    #     'message' : 'All Record',
+    #     'data' : data
+    # }
+    # return render(request, 'workrecord/index.html', params)
+
+    form = FindForm()
+
     data = WorkModel.objects.all()
     params = {
         'title' : 'WorkRecord',
-        'message' : 'All Record',
+        'message' : 'creating now',
+        'form' : form,
         'data' : data
     }
     return render(request, 'workrecord/index.html', params)
@@ -43,3 +54,19 @@ def find(request):
         'data' : data
     }
     return render(request, 'workrecord/index.html', params)
+
+#edit model
+def edit(request, num):
+    obj = WorkModel.objects.get(id=num)
+    if (request.method == 'POST'):
+        workRecordForm = WorkRecordForm(request.POST, instance=obj)
+        workRecordForm.save()
+        return redirect(to='/')
+    
+    params = {
+        'title' : 'WorkRecord',
+        'id' : num,
+        'form' : WorkRecordForm(instance=obj)
+    }
+    
+    return render(request, 'workrecord/edit.html', params)

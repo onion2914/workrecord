@@ -3,7 +3,7 @@
     <h1>{{title}}</h1>
     <table>
         <tbody>
-            <form action="{% url 'create' %}" method="post">
+            <form action="{% url 'edit' id  %}" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <tr><td></td><td><input type="submit" value="click"></td></tr>
