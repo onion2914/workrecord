@@ -1,12 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/workrecord/css/style.css' %}" />
-</head>
-<body>
+{% extends "workrecord/layout.html" %}
+{% block content1 %}
     <h1>{{title}}</h1>
     <table>
         <tbody>
@@ -17,5 +10,22 @@
             </form>
         </tbody>
     </table>
-</body>
-</html>
+    <script>
+        // 自動補完機能OFF
+        $("#id_workStartTime").attr('autocomplete', 'off');
+        $("#id_workEndTime").attr('autocomplete', 'off');
+
+        $(function () {
+          // timedropper
+          $("#id_workStartTime").timepicker({
+              format: "h:mm p",
+              defaultTime: '8:30am',
+          });
+
+          $("#id_workEndTime").timepicker({
+              format: "h:mm p",
+              defaultTime: '8:30am',
+          });
+       });
+  </script>
+{% endblock %}

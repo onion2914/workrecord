@@ -4,20 +4,9 @@ from django.http import HttpResponse
 from .forms import HelloForm
 from .forms import WorkRecordForm
 from .models import WorkModel
+from .forms import FindForm
 
 def index(request):
-    # params = {
-    #     'title' : 'Hello',
-    #     'message' : 'Your Data',
-    #     'form' : HelloForm()
-    # }
-    
-    # if (request.method == 'POST'):
-    #     params['message'] = '名前: ' + request.POST['name'] + \
-    #         '<br>メール: ' + request.POST['mail'] + \
-    #         '<br>年齢: ' + request.POST['age']
-    #     params['form'] = HelloForm(request.POST)
-    # return render(request, 'workrecord/index.html', params)
     
     data = WorkModel.objects.all()
     params = {
@@ -41,3 +30,16 @@ def create(request):
     }
     
     return render(request, 'workrecord/create.html', params)
+
+def find(request):
+    
+    form = FindForm()
+
+    data = WorkModel.objects.all()
+    params = {
+        'title' : 'WorkRecord',
+        'message' : 'creating now',
+        'form' : form,
+        'data' : data
+    }
+    return render(request, 'workrecord/index.html', params)
