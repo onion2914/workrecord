@@ -12,8 +12,7 @@ class WorkRecordForm(forms.ModelForm):
         fields = ['workingDate', 'workNumber', 'memo', 'workStartTime', 'workEndTime']
         
         widgets = {
-            'workingDate': forms.SelectDateWidget,
-            'workStartTime':forms.DateTimeInput
+            'workingDate': forms.SelectDateWidget
         }
 
 class FindForm(forms.Form):
